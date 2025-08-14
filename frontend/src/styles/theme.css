@@ -1,0 +1,54 @@
+/* src/styles/theme.css */
+:root {
+  --font-size: 14px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: #ffffff;
+  --secondary: #ececf0;
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --ring: #b3b3bb;
+
+  /* Komorebi theme */
+  --komorebi-sunlight: #ffd700;
+  --komorebi-warm-orange: #ff8c42;
+  --komorebi-pizza-red: #c62d42;
+  --komorebi-dough-cream: #f7e7ce;
+  --komorebi-herb-green: #7fb069;
+  --komorebi-golden-hour: #ffab73;
+  --komorebi-deep-tomato: #8b1538;
+  --komorebi-light-rays: rgba(255, 215, 0, 0.3);
+}
+
+/* simple utility styles */
+body { margin:0; font-family: system-ui, Arial, sans-serif; background: var(--background); color: var(--foreground); }
+.container { max-width: 980px; margin: 0 auto; padding: 16px; }
+.card { background:#fff; border:1px solid var(--border); border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+.btn {
+  border-radius: 8px; padding: 10px 14px; border:1px solid transparent; cursor:pointer;
+  background: var(--komorebi-pizza-red); color:#fff; font-weight:600;
+}
+.btn.secondary { background: var(--komorebi-warm-orange); }
+.btn.ghost { background:#fff; color: var(--komorebi-pizza-red); border-color: var(--komorebi-pizza-red); }
+.input, .select {
+  width: 100%; padding: 10px 12px; border:1px solid var(--border); border-radius: 8px;
+  background: var(--input-background); outline: none;
+}
+.label { font-weight: 600; margin-bottom: 6px; display:block; }
+.row { display:flex; gap:12px; }
+.row > * { flex:1; }
+.nav { background:#fff; border-bottom:1px solid var(--border); padding: 12px 16px; display:flex; gap:16px; align-items:center; }
+.nav a { text-decoration:none; color: var(--komorebi-deep-tomato); font-weight:600; }
+.brand { display:flex; gap:10px; align-items:center; }
+.brand img { height:36px; border-radius: 6px; }
