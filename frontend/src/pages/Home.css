@@ -1,0 +1,133 @@
+:root{
+  --sun: var(--komorebi-sunlight, #ffd700);
+  --orange: var(--komorebi-warm-orange, #ff8c42);
+  --red: var(--komorebi-pizza-red, #c62d42);
+  --cream: var(--komorebi-dough-cream, #f7e7ce);
+  --green: var(--komorebi-herb-green, #7fb069);
+}
+
+/* page layout to stick footer at bottom */
+.page{ min-height: 100vh; display: flex; flex-direction: column; }
+.page-body{ flex: 1; }
+
+/* layout helpers */
+.container{ max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+
+/* ---------- HERO ---------- */
+.hero{ background: linear-gradient(180deg, rgba(255,215,0,0.08), transparent); }
+.slider{
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 45vw, 480px); /* smaller & responsive */
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.slide{ width: 100%; height: 100%; position: relative; }
+.slideImg{ width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.slideCaption{
+  position: absolute; left: 24px; bottom: 20px;
+  color: #fff; font-weight: 700; font-size: clamp(18px, 3.2vw, 30px);
+  text-shadow: 0 2px 14px rgba(0,0,0,0.45);
+  background: linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0));
+  padding: 8px 14px 8px 12px; border-radius: 8px;
+}
+
+/* optional two-line caption styling */
+.captionMain {
+  font-weight: 700;
+  font-size: clamp(18px, 3.2vw, 30px);
+}
+.captionSub {
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: 400;
+  margin-top: 4px;
+  opacity: 0.9;
+}
+
+.navBtn{
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,0.35); color: #fff; border: 0;
+  width: 40px; height: 48px; font-size: 28px; line-height: 1;
+  cursor: pointer; border-radius: 8px; transition: background .2s ease;
+}
+.navBtn:hover{ background: rgba(0,0,0,0.55); }
+.navBtn.left{ left: 10px; } .navBtn.right{ right: 10px; }
+.dots{
+  position: absolute; left: 0; right: 0; bottom: 10px;
+  display: flex; gap: 8px; justify-content: center;
+}
+.dot{ width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.6); border: 0; cursor: pointer; }
+.dot.active{ background: var(--sun); }
+
+/* --- CTA block placed under the slider --- */
+.heroCtaWrap{
+  background: linear-gradient(180deg, rgba(255,215,0,0.08), transparent);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.heroCta{ text-align: center; padding: 14px 20px 20px; }
+.heroKicker{ margin: 0 0 10px; font-weight: 700; color: #333; opacity: 0.9; font-size: clamp(14px, 2.4vw, 16px); }
+.heroCtas{ display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.btnPrimary{
+  background: linear-gradient(90deg, var(--red), var(--orange)); color: #fff; border: 0;
+  padding: 9px 16px; border-radius: 999px; font-weight: 800; letter-spacing: .2px; text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+.btnPrimary:hover{ filter: brightness(1.05); }
+.btnGhost{
+  background: transparent; color: var(--red); border: 2px solid var(--red);
+  padding: 7px 16px; border-radius: 999px; font-weight: 800; text-decoration: none;
+}
+.btnGhost:hover{ background: rgba(198,45,66,0.06); }
+
+/* ---------- PROMOS ---------- */
+.sectionTitle{ font-size: clamp(22px, 3vw, 28px); font-weight: 800; color: var(--red); margin: 18px 0 10px; }
+.grid{ display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+.card{
+  grid-column: span 12; background: #fff; border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+@media (min-width: 680px){ .card{ grid-column: span 6; } }
+@media (min-width: 992px){ .card{ grid-column: span 3; } }
+.cardImgWrap{ aspect-ratio: 16/10; overflow: hidden; }
+.cardImg{ width: 100%; height: 100%; object-fit: cover; display:block; }
+.cardBody{ padding: 14px 14px 18px; }
+.cardBody h4{ margin: 2px 0 6px; font-weight: 700; }
+.cardBody p{ margin: 0 0 10px; color: #444; }
+.btn{
+  background: linear-gradient(90deg, var(--red), var(--orange));
+  color: #fff; border: 0; padding: 8px 14px; border-radius: 999px; cursor: pointer; font-weight: 700;
+}
+
+/* ---------- ABOUT ---------- */
+.about{ background: linear-gradient(180deg, #fff, var(--cream)); border-top: 1px solid rgba(0,0,0,0.06); }
+.aboutInner{ text-align: center; }
+.aboutInner h3{ margin: 2px 0 8px; color: var(--red); font-weight: 800; }
+.aboutInner p{ max-width: 720px; margin: 0 auto; color: #333; line-height: 1.65; }
+
+/* ---------- FOOTER (sticky) ---------- */
+.footer{ background: var(--red); color: #fff; padding: 20px 0; width: 100%; }
+.footerContainer{
+  max-width: 1200px; margin: 0 auto; padding: 0 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.footer p{ margin: 0; font-size: 14px; }
+.socialIcons{ display: flex; gap: 14px; }
+.socialIcons a{ color: #fff; font-size: 18px; transition: color 0.2s ease; }
+.socialIcons a:hover{ color: var(--sun); }
+
+/* tighten on very small screens */
+@media (max-width: 520px){
+  .slideCaption{ left: 14px; right: 14px; bottom: 12px; padding: 10px 12px; }
+/* two-line caption styling */
+.captionMain{
+  font-weight: 700;
+  font-size: clamp(18px, 3.2vw, 30px);
+  line-height: 1.15;
+}
+.captionSub{
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: 500;
+  margin-top: 4px;
+  opacity: 0.95;
+}
+}

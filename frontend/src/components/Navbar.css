@@ -1,0 +1,154 @@
+/* Navbar container */
+.nav {
+  background: #fff8f0;                 /* warm creamy */
+  border-bottom: 2px solid #e0c097;    /* golden line */
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  /* ✨ fade-in on first paint */
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: navFade 600ms ease-out forwards;
+}
+
+/* Inner flex layout */
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* brand left, links right */
+  gap: 16px;
+}
+
+/* Brand block stacked layout */
+.brand-block {
+  display: flex; /* changed to flex to allow better left alignment */
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+
+  /* subtle rise for brand */
+  opacity: 0;
+  transform: translateY(6px);
+  animation: itemUp 500ms 120ms ease-out forwards;
+}
+
+.brand-logo {
+  height: 64px;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #ead6bf inset;
+}
+
+.brand-text-vertical {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-main {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #b22222; /* deep pizza red */
+}
+
+.brand-sub {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #7b2f13; /* earthy brown */
+}
+
+/* Right-side nav links */
+.nav-links {
+  display: flex; /* ensures all links stay inline */
+  align-items: center;
+  gap: 28px;
+  margin-left: auto; /* pushes to far right */
+}
+
+/* staggered fade for links */
+.nav-links a {
+  text-decoration: none;
+  color: #2e2e2e;
+  font-weight: 500;
+
+  opacity: 0;
+  transform: translateY(6px);
+  animation: itemUp 420ms ease-out forwards;
+}
+.nav-links a:nth-child(1){ animation-delay: 180ms; }
+.nav-links a:nth-child(2){ animation-delay: 260ms; }
+.nav-links a:nth-child(3){ animation-delay: 340ms; }
+.nav-links a:nth-child(4){ animation-delay: 420ms; }
+
+.nav-links a:hover { color: #8c1d1d; }
+.nav-links a.active { color: #b22222; font-weight: 700; }
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  .nav, .brand-block, .nav-links a {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 700px) {
+  .nav-inner { padding: 10px 16px; }
+  .brand-logo { height: 54px; }
+  .brand-main { font-size: 1.5rem; }
+  .brand-sub { font-size: 1rem; }
+  .nav-links { gap: 18px; }
+}
+
+/* Keyframes */
+@keyframes navFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes itemUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Ensure left/right separation */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes left block left, right block right */
+}
+
+/* Optional: make sure each side doesn't collapse */
+.nav-left {
+  flex-shrink: 0;
+}
+.nav-right {
+  flex-shrink: 0;
+}
+/* --- hard-left / hard-right enforcement --- */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* we’ll push right side manually */
+}
+
+/* brand stays left, doesn't grow */
+.brand-block {
+  flex: 0 0 auto;
+}
+
+/* links jump to the far right no matter what */
+.nav-links {
+  margin-left: auto !important;   /* <— key line */
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* optional: add breathing space on very small screens */
+@media (max-width: 420px) {
+  .nav-links { gap: 16px; }
+}

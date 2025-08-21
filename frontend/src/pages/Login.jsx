@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function Login() {
-  const [form, setForm] = useState({ email: "", password: "", roleChoice: "customer" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState("");
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,14 +22,10 @@ export default function Login() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      // Simple redirect logic by chosen role (UI only)
-      if (form.roleChoice === "adminStaff") {
-        setMsg("Logged in (admin/staff). Redirect to /dashboard (to be built)...");
-        // window.location.href = "/dashboard"; // when you build it
-      } else {
-        setMsg("Logged in (customer). Redirect to /menu...");
-        window.location.href = "/menu";
-      }
+      // Simple redirect (always to menu for now)
+      setMsg("Logged in successfully. Redirecting to /menu...");
+      window.location.href = "/menu";
+
     } catch (err) {
       setMsg(err.message);
     }
@@ -41,20 +37,34 @@ export default function Login() {
         <h2 style={{ marginTop: 0, color: "var(--komorebi-deep-tomato)" }}>Login</h2>
         <form onSubmit={onSubmit}>
           <label className="label">Email</label>
-          <input className="input" name="email" type="email" value={form.email} onChange={onChange} required />
+          <input
+            className="input"
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={onChange}
+            required
+          />
 
           <label className="label" style={{ marginTop: 12 }}>Password</label>
-          <input className="input" name="password" type="password" value={form.password} onChange={onChange} required />
-
-          <label className="label" style={{ marginTop: 12 }}>Login as</label>
-          <select className="select" name="roleChoice" value={form.roleChoice} onChange={onChange}>
-            <option value="adminStaff">Admin / Staff</option>
-            <option value="customer">Customer / User</option>
-          </select>
+          <input
+            className="input"
+            name="password"
+            type="password"
+            value={form.password}
+            onChange={onChange}
+            required
+          />
 
           <div style={{ marginTop: 16, display: "flex", gap: 8 }}>
             <button className="btn" type="submit">Login</button>
-            <button className="btn ghost" type="button" onClick={()=> (window.location.href="/register")}>Create account</button>
+            <button
+              className="btn ghost"
+              type="button"
+              onClick={() => (window.location.href = "/register")}
+            >
+              Create account
+            </button>
           </div>
         </form>
         {msg && <p style={{ marginTop: 12 }}>{msg}</p>}
